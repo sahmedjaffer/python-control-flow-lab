@@ -184,26 +184,88 @@ weather_advice()
 
 def determine_season():
     # Your control flow logic goes here
+    month_days = {
+        'JAN': 31, 'FEB': 29, 'MAR': 31, 'APR': 30, 'MAY': 31, 'JUN': 30,
+        'JUL': 31, 'AUG': 31, 'SEP': 30, 'OCT': 31, 'NOV': 30, 'DEC': 31
+    }
+
     month = input('Enter the month of the year (Jan - Dec): ').upper()
-    day = int(input('Enter the day of the month: '))
-    winter_months = ['DEC', 'JAN', 'FEB', 'MAR']
-    spring_months = ['MAR', 'APR', 'MAY', 'JUN']
-    summer_months = ['JUN', 'JUL', 'AUG', 'SEP']
-    fall_months = ['SEP', 'OCT', 'NOV', 'DEC']
-
-
-    if month in winter_months and (month == 'DEC' and day >= 21 or month == 'MAR' and day < 20):
-            print (f"{month} {day} is in Winter.")
-    elif month in spring_months and (month == 'MAR' and day >= 20 or month == 'JUN' and day < 21):
-            print (f"{month} {day} is in Spring.")
-    elif month in summer_months and (month == 'JUN' and day >= 21 or month == 'SEP' and day < 22):
-            print (f"{month} {day} is in Summer.")
-    elif month in fall_months and (month == 'SEP' and day >= 22 or month == 'DEC' and day < 21):
-            print (f"{month} {day} is in Fall.")
+    if month not in month_days:
+        print("Invalid month. Please enter a valid three-letter month abbreviation.")
+        return
+    
+    day = input('Enter the day of the month: ')
+    if day.isdigit() == False :
+        print("Invalid day. Please enter a numeric value for the day.")
+        return
     else:
-         print ("Invalid month or day")
+        day = int(day)
+        if day < 1 or day > month_days[month]:
+            print("Invalid day. Please enter a valid day for the given month.")
+            return
+
+    if (month == 'DEC' and day >= 21) or month == 'JAN' or month == 'FEB' or (month == 'MAR' and day < 20):
+        print(f"{month} {day} is in Winter.")
+    elif (month == 'MAR' and day >= 20) or month == 'APR' or month == 'MAY' or (month == 'JUN' and day < 21):
+        print(f"{month} {day} is in Spring.")
+    elif (month == 'JUN' and day >= 21) or month == 'JUL' or month == 'AUG' or (month == 'SEP' and day < 22):
+        print(f"{month} {day} is in Summer.")
+    elif (month == 'SEP' and day >= 22) or month == 'OCT' or month == 'NOV' or (month == 'DEC' and day < 21):
+        print(f"{month} {day} is in Fall.")
+    else:
+        print("Invalid month or day")
 
   
 
 # Call the function
 determine_season()
+
+
+  
+
+# Call the function
+determine_season()
+
+
+
+# Exercise 6: Number Guessing Game
+#
+# Write a Python function named `guess_number` that allows a user to guess a predetermined number within a range.
+#
+# Requirements:
+# - Set a fixed number as the target for guessing (e.g., 42).
+# - Prompt the user to guess a number within a range (e.g., 1 to 100).
+# - Allow the user to guess up to five times.
+# - After each guess, use conditional statements with AND, OR, and NOT to give the user hints like:
+#   - "Guess is too low" or "Guess is too high."
+#   - "Last chance!" when they are on their fifth guess.
+# - Print "Congratulations, you guessed correctly!" if they guess the number.
+# - Print "Sorry, you failed to guess the number in five attempts." if they do not succeed.
+#
+# Hints:
+# - Use a for loop with a range to limit guesses to five.
+# - Use logical AND, OR, and NOT to check conditions and provide appropriate feedback.
+
+def guess_number():
+    # Your control flow logic goes here
+
+    number = 50
+    for attempts in range(1, 6):
+            guess = int(input(f'Attempt No. {attempts}: Guess a number between 1 and 100: '))
+            if guess == number:
+                print("Congratulations, you guessed correctly!")
+                break
+            elif guess < number-10:
+                print("Guess is too low.")
+            elif guess < number:
+                print("Guess is slightly low.")
+            elif guess > number:
+                print("Guess is slightly high.")
+            elif guess > number+10:
+                print("Guess is too high.")
+            if attempts == 5:
+                print("Sorry, you failed to guess the number in five attempts.")
+
+# Call the function
+guess_number()
+
