@@ -195,6 +195,7 @@ def determine_season():
         return
     
     day = input('Enter the day of the month: ')
+    #https://docs.python.org/3/library/stdtypes.html#str.isdigit
     if day.isdigit() == False :
         print("Invalid day. Please enter a numeric value for the day.")
         return
