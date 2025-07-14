@@ -245,11 +245,11 @@ determine_season()
 # Hints:
 # - Use a for loop with a range to limit guesses to five.
 # - Use logical AND, OR, and NOT to check conditions and provide appropriate feedback.
-
+import random
 def guess_number():
     # Your control flow logic goes here
-
-    number = 50
+# https://docs.python.org/3/library/random.html#random.randint
+    number = random.randint(1, 100)
     for attempts in range(1, 6):
             guess = int(input(f'Attempt No. {attempts}: Guess a number between 1 and 100: '))
             if guess == number:
@@ -257,9 +257,9 @@ def guess_number():
                 break
             elif guess < number-10:
                 print("Guess is too low.")
-            elif guess < number:
+            elif guess < number and guess >= number-10:
                 print("Guess is slightly low.")
-            elif guess > number:
+            elif guess > number and guess <= number+10:
                 print("Guess is slightly high.")
             elif guess > number+10:
                 print("Guess is too high.")
@@ -268,4 +268,5 @@ def guess_number():
 
 # Call the function
 guess_number()
+
 
